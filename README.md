@@ -1,4 +1,6 @@
-# Prueba app
+# Sam's Task App
+
+Una app de tareas simple escrita en flet, por ahora este es el primer codigo funcional de la app, se pueden añadir y eliminar tareas
 
 ## Run the app
 
