@@ -2,6 +2,8 @@
 
 Una app de tareas simple escrita en flet, por ahora este es el primer codigo funcional de la app, se pueden añadir y eliminar tareas
 
+trataré de actualizar todas las noches, espero lograrlo
+
 ## Run the app
 
 ### uv
