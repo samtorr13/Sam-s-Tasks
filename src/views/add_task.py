@@ -1,7 +1,7 @@
 import flet as ft
 from handlers import database
 
-def add_task_view(page: ft.Page, load_tasks):
+def add_task_view(page: ft.Page, load_tasks, db_dir):
     """Vista para agregar una nueva tarea."""
     
     def go_back(e):
@@ -12,7 +12,7 @@ def add_task_view(page: ft.Page, load_tasks):
     def add_new_task(e):
         task_input = next((c for c in page.views[-1].controls if isinstance(c, ft.TextField)), None)
         if task_input and task_input.value.strip():
-            database.add_task(task_input.value.strip())
+            database.add_task(task_input.value.strip(), db_dir)
             task_input.value = ""
             page.views.pop()
             load_tasks()

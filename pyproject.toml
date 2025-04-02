@@ -24,7 +24,16 @@ product = "SamTask"
 company = "SamTorr13"
 
 # copyright text to display in about app dialogs
-copyright = "Copyright (C) 2025 by Flet"
+copyright = "MIT"
+
+compile.app = true 
+compile.packages = true 
+compile.cleanup = true 
+
+
+[tool.flet.app.boot_screen]
+show = true
+message = "Preparing the app for its first launch..."
 
 [tool.flet.app]
 path = "src"
