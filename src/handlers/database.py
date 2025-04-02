@@ -1,10 +1,12 @@
 import sqlite3
+import os
+DB_PATH = os.path.join("storage", "data", "database.db")
 
-DB_NAME = "database.db"
+
 
 def connect():
     """Conecta a la base de datos y devuelve la conexión y el cursor."""
-    conn = sqlite3.connect(DB_NAME)
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     return conn, cursor
 
