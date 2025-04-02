@@ -1,45 +1,58 @@
 import sqlite3
+import os
+import flet as ft
 
-DB_NAME = "database.db"
-
-def connect():
+def connect(db_path):
     """Conecta a la base de datos y devuelve la conexión y el cursor."""
-    conn = sqlite3.connect(DB_NAME)
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     return conn, cursor
 
-def add_task(name):
+def init_db(db_path):
+    """Crea la base de datos y las tablas si no existen."""
+    conn, cursor = connect(db_path)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS tasks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        completed INTEGER DEFAULT 0
+    )
+    """)
+    conn.commit()
+    conn.close()
+
+def add_task(name, db_path):
     """Añade una nueva tarea a la base de datos."""
-    conn, cursor = connect()
+    conn, cursor = connect(db_path)
     cursor.execute("INSERT INTO tasks (name, completed) VALUES (?, ?)", (name, 0))
     conn.commit()
     conn.close()
 
-def get_tasks():
+def get_tasks(db_path):
     """Obtiene todas las tareas de la base de datos."""
-    conn, cursor = connect()
+    conn, cursor = connect(db_path)
     cursor.execute("SELECT id, name, completed FROM tasks")
     tasks = cursor.fetchall()
     conn.close()
     return tasks
 
-def update_task(task_id, completed):
+def update_task(task_id, completed, db_path):
     """Actualiza el estado de una tarea."""
-    conn, cursor = connect()
+    conn, cursor = connect(db_path)
     cursor.execute("UPDATE tasks SET completed = ? WHERE id = ?", (completed, task_id))
     conn.commit()
     conn.close()
 
-def delete_task(task_id):
+def delete_task(task_id, db_path):
     """Elimina una tarea de la base de datos."""
-    conn, cursor = connect()
+    conn, cursor = connect(db_path)
     cursor.execute("DELETE FROM tasks WHERE id = ?", (task_id,))
     conn.commit()
     conn.close()
 
-def count_tasks():
-    """cuenta el numero de tareas pendientes."""
-    conn, cursor = connect()
+def count_tasks(db_path):
+    """Cuenta el número de tareas pendientes."""
+    conn, cursor = connect(db_path)
     cursor.execute("SELECT COUNT(*) FROM tasks WHERE completed = 0")
     count = cursor.fetchone()[0]
     conn.close()
