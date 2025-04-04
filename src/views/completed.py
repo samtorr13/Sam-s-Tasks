@@ -36,7 +36,8 @@ def completed_view(page: ft.Page):
             navigation_bar=ft.NavigationBar(
                 destinations=[
                     ft.NavigationBarDestination(icon=ft.icons.HOME, label="Home"),
-                    ft.NavigationBarDestination(icon=ft.Icons.CHECK_BOX, label="Tareas Completadas"),
+                    ft.NavigationBarDestination(icon=ft.Icons.CHECK_BOX, label="Completadas"),
+                    ft.NavigationBarDestination(icon=ft.Icons.SETTINGS, label="Configuración"),
                 ], on_change=lambda e: nav_hand.nav(page, e.control.selected_index), selected_index=1
             )
         ))

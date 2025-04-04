@@ -18,12 +18,17 @@ def home_view(page: ft.Page):
 
         #controles para cada tarea
         task_controls = [
-            ft.Row([
-                ft.Checkbox(label=task[1], value=bool(task[2]), on_change=lambda e, t=task: toggle_task(e, t, db_dir)),
-                ft.IconButton(ft.icons.DELETE, on_click=lambda e, t=task: remove_task(t, db_dir))
-            ])
+            ft.Container(
+                content=ft.Row([
+                    ft.Checkbox(value=bool(task[2]), on_change=lambda e, t=task: toggle_task(e, t, db_dir)),
+                    ft.Text(task[1]),
+                    ft.IconButton(ft.icons.DELETE, on_click=lambda e, t=task: remove_task(t, db_dir))
+                ]), 
+                #on_click=
+            )
             for task in tasks
-        ]
+            ]
+
 
         #define la vista principal
         page.views.append(ft.View(
@@ -36,7 +41,8 @@ def home_view(page: ft.Page):
             navigation_bar=ft.NavigationBar(
                 destinations=[
                     ft.NavigationBarDestination(icon=ft.icons.HOME, label="Home"),
-                    ft.NavigationBarDestination(icon=ft.Icons.CHECK_BOX, label="Tareas Completadas"),
+                    ft.NavigationBarDestination(icon=ft.Icons.CHECK_BOX, label="Completadas"),
+                    ft.NavigationBarDestination(icon=ft.Icons.SETTINGS, label="Configuración"),
                 ], on_change=lambda e: nav_hand.nav(page, e.control.selected_index)
             )
         ))
