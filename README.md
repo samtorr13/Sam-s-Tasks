@@ -1,5 +1,5 @@
 # Sam's Task App
-![Static Badge](https://img.shields.io/badge/Descargar-Github-green?logo=github&link=https%3A%2F%2Fgithub.com%2Fsamtorr13%2FSam-s-Tasks%2Freleases%2Ftag%2Fv0.0.2-Alpha)(https://github.com/samtorr13/Sam-s-Tasks/releases)
+![Badge](https://img.shields.io/badge/Descargar-Github-green?logo=github)
 
 Una app de tareas simple escrita en flet, por los momentos aún se encuentra en desarrollo, por lo que no es 100% estable.
 
