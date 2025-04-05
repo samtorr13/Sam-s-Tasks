@@ -1,7 +1,7 @@
 import flet as ft
 from handlers import database
 
-def add_task_view(page: ft.Page, load_tasks, db_dir):
+def view(page: ft.Page, load_tasks, db_dir):
     """Vista para agregar una nueva tarea."""
     
     def go_back(e):
@@ -29,14 +29,6 @@ def add_task_view(page: ft.Page, load_tasks, db_dir):
         [
             ft.AppBar(title=ft.Text("Crear una nueva tarea"), bgcolor=ft.colors.SURFACE_CONTAINER_HIGHEST, leading=ft.IconButton(ft.icons.ARROW_BACK, on_click=go_back)),
             ft.TextField(label="Nueva Tarea", on_submit=add_new_task),
-            """ft.SegmentedButton(
-                #on_change = lambda e: color_change(e),
-                segments=[
-                    ft.Segment(value="1", label="Rojo", ),
-                    ft.Segment(value="2", label="Verde", ),
-                    ft.Segment(value="3", label="Azul", ),
-                ]
-            ),""",
             ft.ElevatedButton("Agregar", on_click=add_new_task, icon=ft.icons.ADD),
         ],
         horizontal_alignment=ft.CrossAxisAlignment.CENTER

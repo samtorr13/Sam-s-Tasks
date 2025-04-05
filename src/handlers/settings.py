@@ -1,10 +1,15 @@
 import flet as ft
 
 def theme_change(e, page):
-    theme_map = {
-        "1": ft.ThemeMode.LIGHT,
-        "2": ft.ThemeMode.DARK,
-        "3": ft.ThemeMode.SYSTEM
-    }
-    page.theme_mode = theme_map.get(e.control.value, ft.ThemeMode.SYSTEM)
+
+    theme = next(iter(e.control.selected), None)
+    if theme == "1":
+        page.theme_mode = ft.ThemeMode.LIGHT
+        page.bgcolor = ft.colors.WHITE
+    elif theme == "2":
+        page.theme_mode = ft.ThemeMode.DARK
+        page.bgcolor = ft.colors.BLACK
+    elif theme == "3":
+        page.theme_mode = ft.ThemeMode.SYSTEM
+        page.bgcolor = ft.colors.SURFACE_CONTAINER_HIGHEST
     page.update()

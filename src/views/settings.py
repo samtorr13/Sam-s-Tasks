@@ -1,6 +1,5 @@
 import flet as ft
 from handlers import database, nav_hand, settings
-from views.add_task import add_task_view
 import os
 
 def settings_view(page: ft.Page):
