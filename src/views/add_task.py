@@ -1,7 +1,7 @@
 import flet as ft
 from handlers import database
 
-def add_task_view(page: ft.Page, load_tasks, db_dir):
+def view(page: ft.Page, load_tasks, db_dir):
     """Vista para agregar una nueva tarea."""
     
     def go_back(e):
@@ -17,7 +17,13 @@ def add_task_view(page: ft.Page, load_tasks, db_dir):
             page.views.pop()
             load_tasks()
             page.update()
-
+    def color_change(e):
+        if e.control.value == "1":
+            pass
+        elif e.control.value == "2":
+            pass
+        elif e.control.value == "3":
+            pass
     page.views.append(ft.View(
         "/add_task",
         [
@@ -27,4 +33,6 @@ def add_task_view(page: ft.Page, load_tasks, db_dir):
         ],
         horizontal_alignment=ft.CrossAxisAlignment.CENTER
     ))
+
+
     page.update()

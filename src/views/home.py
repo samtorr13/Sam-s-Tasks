@@ -1,6 +1,7 @@
 import flet as ft
-from handlers import database, nav_hand
-from views.add_task import add_task_view
+from handlers import database, nav_hand, cont_colors
+from views import add_task, taskv
+from views.view_classes import task_container_main as task_cont
 import os
 
 def home_view(page: ft.Page):
@@ -15,15 +16,10 @@ def home_view(page: ft.Page):
         pending_tasks_count = database.count_tasks(db_dir) #cuenta las tareas pendientes para mostar en el encabezado
         tasks = database.get_tasks(db_dir) #obtiene las tareas
         tasks = [task for task in tasks if task[2] == 0]
-
+        
         #controles para cada tarea
-        task_controls = [
-            ft.Row([
-                ft.Checkbox(label=task[1], value=bool(task[2]), on_change=lambda e, t=task: toggle_task(e, t, db_dir)),
-                ft.IconButton(ft.icons.DELETE, on_click=lambda e, t=task: remove_task(t, db_dir))
-            ])
-            for task in tasks
-        ]
+        task_controls = task_cont.task(tasks, db_dir, load_tasks, toggle_task)
+
 
         #define la vista principal
         page.views.append(ft.View(
@@ -32,11 +28,12 @@ def home_view(page: ft.Page):
                 ft.AppBar(title=ft.Text(f"{pending_tasks_count} Tareas Pendientes"), bgcolor=ft.colors.SURFACE_CONTAINER_HIGHEST),
                 *task_controls,
             ],
-            floating_action_button=ft.FloatingActionButton(icon=ft.icons.ADD, on_click=lambda e: add_task_view(page, load_tasks, db_dir)),
+            floating_action_button=ft.FloatingActionButton(icon=ft.icons.ADD, on_click=lambda e: add_task.view(e.page, load_tasks, db_dir)),
             navigation_bar=ft.NavigationBar(
                 destinations=[
                     ft.NavigationBarDestination(icon=ft.icons.HOME, label="Home"),
-                    ft.NavigationBarDestination(icon=ft.Icons.CHECK_BOX, label="Tareas Completadas"),
+                    ft.NavigationBarDestination(icon=ft.Icons.CHECK_BOX, label="Completadas"),
+                    ft.NavigationBarDestination(icon=ft.Icons.SETTINGS, label="Configuración"),
                 ], on_change=lambda e: nav_hand.nav(page, e.control.selected_index)
             )
         ))
@@ -52,4 +49,6 @@ def home_view(page: ft.Page):
         database.delete_task(task[0], db_dir)
         load_tasks()
 
+    def task_view(page):
+        taskv.view(page)
     load_tasks()
