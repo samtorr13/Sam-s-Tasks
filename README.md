@@ -5,21 +5,6 @@ Una app de tareas simple escrita en flet, por ahora este es el primer codigo fun
 trataré de actualizar todas las noches, espero lograrlo
 
 ## Run the app
-
-### uv
-
-Run as a desktop app:
-
-```
-uv run flet run
-```
-
-Run as a web app:
-
-```
-uv run flet run --web
-```
-
 ### Poetry
 
 Install dependencies from `pyproject.toml`:
