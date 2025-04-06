@@ -18,7 +18,7 @@ def completed_view(page: ft.Page):
         tasks = [task for task in tasks if task[2] == 1]
 
         #controles para cada tarea
-        task_controls = task_cont.task(tasks, db_dir, load_tasks, toggle_task)
+        task_controls = task_cont.task(tasks, db_dir, load_tasks, toggle_task, page)
 
         #define la vista principal
         page.views.append(ft.View(

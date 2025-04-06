@@ -18,14 +18,14 @@ def home_view(page: ft.Page):
         tasks = [task for task in tasks if task[2] == 0]
         
         #controles para cada tarea
-        task_controls = task_cont.task(tasks, db_dir, load_tasks, toggle_task)
+        task_controls = task_cont.task(tasks, db_dir, load_tasks, toggle_task, page)
 
 
         #define la vista principal
         page.views.append(ft.View(
             "/",
             [
-                ft.AppBar(title=ft.Text(f"{pending_tasks_count} Tareas Pendientes"), bgcolor=ft.colors.SURFACE_CONTAINER_HIGHEST),
+                ft.AppBar(title=ft.Text(f"{pending_tasks_count} Tareas Pendientes"), bgcolor=ft.colors.SURFACE_CONTAINER_HIGHEST, actions=[ft.IconButton(ft.icons.SEARCH,disabled=True)]),
                 *task_controls,
             ],
             floating_action_button=ft.FloatingActionButton(icon=ft.icons.ADD, on_click=lambda e: add_task.view(e.page, load_tasks, db_dir)),

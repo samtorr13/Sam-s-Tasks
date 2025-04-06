@@ -5,6 +5,7 @@ import os
 def settings_view(page: ft.Page):
 
     app_dir = os.getenv('FLET_APP_STORAGE_DATA')
+    theme = page.client_storage.get("theme")
     page.views.clear()#limpia la vista antes de agregar cualquier dato
     #define la vista principal
     page.views.append(ft.View(
@@ -16,7 +17,7 @@ def settings_view(page: ft.Page):
             ft.SegmentedButton(
             on_change = lambda e: settings.theme_change(e, page),
             #selected_icon=ft.Icon(ft.Icons.ONETWOTHREE),
-            selected={"1"},
+            selected={theme} if theme else {3},
             #allow_multiple_selection=True,
             segments=[
                 ft.Segment(
@@ -33,6 +34,7 @@ def settings_view(page: ft.Page):
                     value="3",
                     label=ft.Text("Auto."),
                     icon=ft.Icon(ft.Icons.BRIGHTNESS_AUTO),
+                    disabled=True,
                 ),
             ],
         )

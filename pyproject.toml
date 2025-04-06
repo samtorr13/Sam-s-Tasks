@@ -1,6 +1,6 @@
 [project]
 name = "SamTask"
-version = "0.0.1"
+version = "0.1.0"
 description = "Una App de tareas"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -30,6 +30,9 @@ compile.app = true
 compile.packages = true 
 compile.cleanup = true 
 
+[tool.flet.app.startup_screen]
+show = true
+message = "Iniciando..."
 
 [tool.flet.app.boot_screen]
 show = true
