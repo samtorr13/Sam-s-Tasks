@@ -13,3 +13,4 @@ def theme_change(e, page):
         page.theme_mode = ft.ThemeMode.SYSTEM
         page.bgcolor = ft.colors.SURFACE_CONTAINER_HIGHEST
     page.update()
+    page.client_storage.set("theme", theme)
